@@ -11,10 +11,10 @@
     diagram_fact(synonym,SourceID,SourceLongID)
     diagram_fact(target,Edge,TargetLongID)
     diagram_fact(synonym,TargetID,TargetLongID)
-	diagram_fact(direct-contains,SourceParent,SourceID)
-    diagram_fact(direct-contains,TargetParent,TargetID)
-    diagram_fact(direct-contains,SourceContainer,SourceParent)
-    diagram_fact(direct-contains,TargetContainer,TargetParent)
+	diagram_fact(direct_contains,SourceParent,SourceID)
+    diagram_fact(direct_contains,TargetParent,TargetID)
+    diagram_fact(direct_contains,SourceContainer,SourceParent)
+    diagram_fact(direct_contains,TargetContainer,TargetParent)
     cond 
       SourceContainer = TargetContainer
       das_fact(direct_contains,SourceContainer,TargetContainer)

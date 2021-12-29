@@ -7,6 +7,7 @@ DesignRuleQuery = sharp+ "rule" #(anythingToEOL) Forall
 OnFailure = sharp+ "on" "failure" #(printLine+)
 
 Forall = "forall" ForAllClause QueryClause+ "end" "forall"
+
 QueryClause
   = "cond" QueryClause+ "end" "cond" -- cond
   | PrologClause                     -- other
