@@ -31,6 +31,14 @@ exports.formatParameters = function () {
     return parameterArray.join (',');
 }
 
+exports.formatAllTrueParameters = function () {
+    trueArray = [];
+    parameterArray.forEach( () => {
+	trueArray.push (true);
+    });
+    return trueArray.join (',');
+}
+
 exports.clearParameters = function () {
     parameterArray = [];
 }

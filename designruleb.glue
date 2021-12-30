@@ -3,8 +3,8 @@ Main [ Title Parameters Imports DesignRuleQuery OnFailure ]
 const fs = require ('fs');
 var rawText = fs.readFileSync ('/dev/fd/0');
 var parameters = JSON.parse(rawText);
-${support.formatJSParameters ()}
 parameters.forEach (p => {
+${support.formatJSParameters ()}
 if (!p.Passed) {
   console.error ('design rule failure');
 ${OnFailure}

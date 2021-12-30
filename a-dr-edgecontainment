@@ -11,11 +11,17 @@
 
  
 designrule:-
-(das_fact(kind,Edge,edge),
-cond1) -> Passed = true ; Passed = false.
+  (
+    das_fact(kind,Edge,edge),
+    bagof([Passed,Edge],cond0(Passed,Edge),Bag)
+  ),
+  ->true
+  ; (Bag = [[true,true]]
+),
+json_write(user_output,Bag,[width(128)]).
 
-cond1:-
-diagram_fact(source,Edge,SourceLongID),
+cond0(Passed,Edge):-
+((diagram_fact(source,Edge,SourceLongID),
 diagram_fact(synonym,SourceID,SourceLongID),
 diagram_fact(target,Edge,TargetLongID),
 diagram_fact(synonym,TargetID,TargetLongID),
@@ -25,6 +31,6 @@ diagram_fact(direct_contains,SourceContainer,SourceParent),
 diagram_fact(direct_contains,TargetContainer,TargetParent),
 (SourceContainer=TargetContainer;das_fact( direct_contains,SourceContainer,TargetContainer );das_fact( direct_contains,TargetContainer,SourceContainer );fail)
 ,
-true.
+true)->Passed=true ; Passed=false).
 
 

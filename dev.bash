@@ -10,4 +10,5 @@ fname=`basename -s '.md' $mdfile`
 prep "cond\n" "endcond\n" cond.ohm cond.glue --inclusive --stop=1 --support=${cwd}/drsupport.js <dr-edgecontainment.md >$temp
 prep "." "$" designrule.ohm designrulea.glue --stop=1 --support=${cwd}/drsupport.js --PLPATH=${plpath} <$temp >a-$fname
 prep "." "$" designrule.ohm designruleb.glue --stop=1 --support=${cwd}/drsupport.js --PLPATH=${plpath} <dr-edgecontainment.md >b-$fname
+cat a-$fname
 rm $temp

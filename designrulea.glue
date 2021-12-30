@@ -6,12 +6,11 @@ ${Imports}
 ${DesignRuleQuery}
 ]]
 
-
 Title [ @sharp kdesign krule anythingToEOL ]
   = [[]]
 
 Parameters [@sharp kparameters anythingToEOL @identifier]
-  = [[]]
+  = {{ support.clearParameters (); support.pushParameter ("Passed"); }} [[]]
   
 Imports [@sharp kimports anythingToEOL @identifier] = [[${identifier}]]
 DesignRuleQuery [@sharp krule anythingToEOL Forall] = [[${anythingToEOL} ${Forall}]]
@@ -20,11 +19,17 @@ OnFailure [@sharp kon kfailure @printLine] = [[${sharp} ${kon} ${kfailure} ${pri
 Forall [kforall ForAllClause @QueryClause kend kforall]
   = [[
 designrule:-
-(${ForAllClause}
-${support.generateConditionName ()}) -> Passed = true ; Passed = false.
+  (
+    ${ForAllClause}
+    bagof([${support.formatParameters ()}],${support.getCurrentConditionName ()}(${support.formatParameters ()}),Bag)
+  ),
+  ->true
+  ; (Bag = [[${support.formatAllTrueParameters ()}\]\]
+),
+json_write(user_output,Bag,[width(128)]).
 
-${support.getCurrentConditionName ()}:-
-${QueryClause}true.
+${support.getCurrentConditionName ()}(${support.formatParameters ()}):-
+((${QueryClause}true)->Passed=true ; Passed=false).
 ]]
 QueryClause_cond [kcond @QueryClause kend kcond] = [[(\n${QueryClause}),\n]] 
 QueryClause_other [PrologClause] = [[${PrologClause},\n]]
@@ -41,7 +46,7 @@ printLine [@notNL nl] = [[${notNL}${nl}]]
   prologArgs_nested [klp @prologArgs krp] = [[${klp} ${prologArgs} ${krp}]]
   prologArgs_other [any] = [[${any}]]
 
-  parameterIdentifier [id] = [[${id}]]
+  parameterIdentifier [id] = [[${support.pushParameter (id)}]]
   
     keyword [word] = [[${word}]]
     sharp [c] = [[${c}]]
