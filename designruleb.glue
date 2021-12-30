@@ -40,7 +40,7 @@ printLine [@notNL nl] = [[console.error(\`${notNL}\`);${nl}]]
   prologArgs_nested [klp @prologArgs krp] = [[]]
   prologArgs_other [any] = [[]]
 
-  parameterIdentifier [id] = [[support.pushParameter (${id})]]
+  parameterIdentifier [id] = [[${support.pushParameter (id)}]]
 
     keyword [word] = [[${word}]]
     sharp [c] = [[${c}]]

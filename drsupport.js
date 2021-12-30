@@ -36,7 +36,8 @@ exports.clearParameters = function () {
 }
 
 exports.pushParameter = function (s) {
-    parameterArray.push (s.trim ());
+    let r = s.trim ();
+    parameterArray.push (r);
     return '';
 }
 
