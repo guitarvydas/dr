@@ -18,6 +18,7 @@ printLine = ~sharp notNL* nl
   PrologClause 
     = identifier "(" prologArgs+ ")" -- clauseWithArgs
     | identifier "=" identifier     -- assignment
+    | "(" prologArgs+ ")"           -- parenthesized
     | identifier                    -- clauseWithoutArgs
 
   prologArgs

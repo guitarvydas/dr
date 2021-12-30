@@ -14,7 +14,7 @@ Parameters [@sharp kparameters anythingToEOL @identifier]
   = [[]]
   
 Imports [@sharp kimports anythingToEOL @identifier] = [[${identifier}]]
-DesignRuleQuery [@sharp krule anythingToEOL Forall] = [[${sharp} ${krule} ${anythingToEOL} ${Forall}]]
+DesignRuleQuery [@sharp krule anythingToEOL Forall] = [[${anythingToEOL} ${Forall}]]
 OnFailure [@sharp kon kfailure @printLine] = [[${sharp} ${kon} ${kfailure} ${printLine}]]
 
 Forall [kforall ForAllClause @QueryClause kend kforall]
@@ -36,6 +36,7 @@ printLine [@notNL nl] = [[${notNL}${nl}]]
   PrologClause_clauseWithArgs [identifier klp @prologArgs krp] = [[${identifier}${klp}${prologArgs}${krp}]]
   PrologClause_assignment [identifier1 keq identifier2] = [[${identifier1} ${keq} ${identifier2}]]
   PrologClause_clauseWithoutArgs [identifier] = [[${identifier}]]
+  PrologClause_parenthesized [klp @clause krp] = [[${klp}${clause}${krp}\n]]
 
   prologArgs_nested [klp @prologArgs krp] = [[${klp} ${prologArgs} ${krp}]]
   prologArgs_other [any] = [[${any}]]
