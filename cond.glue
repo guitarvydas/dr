@@ -1,8 +1,8 @@
-Main [kbegin kcond @PrologClause kend kcond ] = [[${kbegin} ${kcond}\n${PrologClause}${kend}${kcond}]]
+Main [kcond @PrologClause kendcond ] = [[( ${PrologClause} fail)]]
 
-  PrologClause_clauseWithArgs [identifier klp @prologArgs krp] = [[${identifier}${klp}${prologArgs}${krp}\n]]
-  PrologClause_assignment [identifier1 keq identifier2] = [[${identifier1} ${keq} ${identifier2}\n]]
-  PrologClause_clauseWithoutArgs [identifier] = [[${identifier}\n]]
+  PrologClause_clauseWithArgs [identifier klp @prologArgs krp] = [[${identifier}${klp}${prologArgs}${krp}\n; ]]
+  PrologClause_assignment [identifier1 keq identifier2] = [[${identifier1} ${keq} ${identifier2}\n; ]]
+  PrologClause_clauseWithoutArgs [identifier] = [[${identifier}\n; ]]
 
   prologArgs_nested [klp @prologArgs krp] = [[${klp} ${prologArgs} ${krp}]]
   prologArgs_other [any] = [[${any}]]

@@ -1,5 +1,5 @@
 designrulecond {
-  Main = "begin" "cond" PrologClause+ "end" "cond"
+  Main = "cond" PrologClause+ "endcond"
   PrologClause 
     = identifier "(" prologArgs+ ")" -- clauseWithArgs
     | identifier "=" identifier     -- assignment
@@ -12,7 +12,7 @@ designrulecond {
     identifier = ~keyword firstChar restChar*
     firstChar = "A" .. "Z"  | "a" .. "z" | "_"
     restChar = "0" .. "9" | firstChar
-    keyword = "end" | "cond" | "begin"
+    keyword = "endcond" | "cond"
 
     anythingToEOL = notNL* nl
     nl = "\n"

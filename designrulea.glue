@@ -24,8 +24,7 @@ designrule:-
 ${support.generateConditionName ()}) -> Passed = true ; Passed = false.
 
 ${support.getCurrentConditionName ()}:-
-${QueryClause}
-true.
+${QueryClause}true.
 ]]
 QueryClause_cond [kcond @QueryClause kend kcond] = [[(\n${QueryClause}),\n]] 
 QueryClause_other [PrologClause] = [[${PrologClause},\n]]

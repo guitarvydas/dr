@@ -15,12 +15,12 @@
     diagram_fact(direct_contains,TargetParent,TargetID)
     diagram_fact(direct_contains,SourceContainer,SourceParent)
     diagram_fact(direct_contains,TargetContainer,TargetParent)
-    begin cond
+    cond
       SourceContainer = TargetContainer
       das_fact(direct_contains,SourceContainer,TargetContainer)
       das_fact(direct_contains,TargetContainer,SourceContainer)
-    end cond
-  end forall
+    endcond
+  endforall
 ## on failure
 Edge Containment edge=${Edge}
 
