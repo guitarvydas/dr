@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+const fs = require ('fs');
+var rawText = fs.readFileSync ('/dev/fd/0');
+var parameters = JSON.parse(rawText);
+var Passed = p [0];
+parameters.forEach (p => {
+if (!p.Passed) {
+  console.error ('design rule failure');
+console.error(``);
+console.error(`Edge Containment edge=${Edge}`);
+console.error(``);
+console.error(``);
+console.error(`	`);
+
+}
+});
+

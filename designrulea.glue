@@ -41,6 +41,8 @@ printLine [@notNL nl] = [[${notNL}${nl}]]
   prologArgs_nested [klp @prologArgs krp] = [[${klp} ${prologArgs} ${krp}]]
   prologArgs_other [any] = [[${any}]]
 
+  parameterIdentifier [id] = [[${id}]]
+  
     keyword [word] = [[${word}]]
     sharp [c] = [[${c}]]
     anythingToEOL [@notNL nl] = [[${notNL}${nl}]]

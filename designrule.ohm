@@ -1,7 +1,7 @@
 designrule {
 Main = Title Parameters Imports DesignRuleQuery OnFailure
 Title = sharp+ "design" "rule" #(anythingToEOL)
-Parameters = sharp+ "parameters" #(anythingToEOL) identifier+
+Parameters = sharp+ "parameters" #(anythingToEOL) parameterIdentifier+
 Imports = sharp+ "imports" #(anythingToEOL) importid+
 DesignRuleQuery = sharp+ "rule" #(anythingToEOL) Forall
 OnFailure = sharp+ "on" "failure" #(printLine+)
@@ -25,6 +25,8 @@ printLine = ~sharp notNL* nl
     = "(" prologArgs+ ")"            -- nested
     | ~")" ~"(" any                  -- other
 
+  parameterIdentifier = identifier
+  
     importid = identifier
     keyword = "end" | "cond" | "forall" | "failure"
     sharp = "#"
