@@ -27,7 +27,7 @@ ${support.getCurrentConditionName ()}:-
 ${QueryClause}
 true.
 ]]
-QueryClause_cond [kcond @QueryClause kend kcond] = [[${kcond}\n${QueryClause} ${kend} ${kcond}\n]] 
+QueryClause_cond [kcond @QueryClause kend kcond] = [[(\n${QueryClause}),\n]] 
 QueryClause_other [PrologClause] = [[${PrologClause},\n]]
 printLine [@notNL nl] = [[${notNL}${nl}]]
 

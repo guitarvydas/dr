@@ -15,7 +15,7 @@
     diagram_fact(direct_contains,TargetParent,TargetID)
     diagram_fact(direct_contains,SourceContainer,SourceParent)
     diagram_fact(direct_contains,TargetContainer,TargetParent)
-    cond 
+    begin cond
       SourceContainer = TargetContainer
       das_fact(direct_contains,SourceContainer,TargetContainer)
       das_fact(direct_contains,TargetContainer,SourceContainer)
