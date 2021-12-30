@@ -14,7 +14,7 @@ designrule:-
   (
     das_fact(kind,Edge,edge),
     bagof([Passed,Edge],cond0(Passed,Edge),Bag)
-  ),
+  )
   ->true
   ; (Bag = [[true,true]]
 ),

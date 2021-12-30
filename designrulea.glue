@@ -22,7 +22,7 @@ designrule:-
   (
     ${ForAllClause}
     bagof([${support.formatParameters ()}],${support.getCurrentConditionName ()}(${support.formatParameters ()}),Bag)
-  ),
+  )
   ->true
   ; (Bag = [[${support.formatAllTrueParameters ()}\]\]
 ),
