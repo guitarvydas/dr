@@ -1,9 +1,13 @@
 Main [ Title Parameters Imports DesignRuleQuery OnFailure ]
-  = [[#!/usr/bin/env swipl
-:-initialization(designrule,main).
-:- use_module(library(http/json)).
-${Imports}
-${DesignRuleQuery}
+  = [[#!/usr/bin/env node
+const fs = require ('fs');
+var rawText = fs.readFileSync ('/dev/fd/0');
+var parameters = JSON.parse(rawText);
+parameters.forEach (p => {
+  ${support.formatJSParameters ()}
+  ${support.formatConditionalDisplays ()};
+});
+  ${support.formatFinalDisplays ()}
 ]]
 
 
@@ -11,44 +15,37 @@ Title [ @sharp kdesign krule anythingToEOL ]
   = [[]]
 
 Parameters [@sharp kparameters anythingToEOL @identifier]
-  = [[]]
+  = {{ support.clearParameters (); }} [[]]
   
-Imports [@sharp kimports anythingToEOL @identifier] = [[${identifier}]]
-DesignRuleQuery [@sharp krule anythingToEOL Forall] = [[${anythingToEOL} ${Forall}]]
+Imports [@sharp kimports anythingToEOL @identifier] = [[]]
+DesignRuleQuery [@sharp krule anythingToEOL Forall] = [[]]
 OnFailure [@sharp kon kfailure @printLine] = [[${sharp} ${kon} ${kfailure} ${printLine}]]
 
 Forall [kforall ForAllClause @QueryClause kend kforall]
-  = [[
-designrule:-
-(${ForAllClause}
-${support.generateConditionName ()}) -> Passed = true ; Passed = false.
-
-${support.getCurrentConditionName ()}:-
-${QueryClause}true.
-]]
-QueryClause_cond [kcond @QueryClause kend kcond] = [[(\n${QueryClause}),\n]] 
-QueryClause_other [PrologClause] = [[${PrologClause},\n]]
+  = [[]]
+QueryClause_cond [kcond @QueryClause kend kcond] = [[]] 
+QueryClause_other [PrologClause] = [[]]
 printLine [@notNL nl] = [[${notNL}${nl}]]
 
-  ForAllClause [PrologClause] = [[${PrologClause},]]
-  ForAllClause [PrologClause] = [[${PrologClause},]]
+  ForAllClause [PrologClause] = [[]]
+  ForAllClause [PrologClause] = [[]]
 
-  PrologClause_clauseWithArgs [identifier klp @prologArgs krp] = [[${identifier}${klp}${prologArgs}${krp}]]
-  PrologClause_assignment [identifier1 keq identifier2] = [[${identifier1} ${keq} ${identifier2}]]
-  PrologClause_clauseWithoutArgs [identifier] = [[${identifier}]]
-  PrologClause_parenthesized [klp @clause krp] = [[${klp}${clause}${krp}\n]]
+  PrologClause_clauseWithArgs [identifier klp @prologArgs krp] = [[]]
+  PrologClause_assignment [identifier1 keq identifier2] = [[]]
+  PrologClause_clauseWithoutArgs [identifier] = [[]]
+  PrologClause_parenthesized [klp @clause krp] = [[]]
 
-  prologArgs_nested [klp @prologArgs krp] = [[${klp} ${prologArgs} ${krp}]]
-  prologArgs_other [any] = [[${any}]]
+  prologArgs_nested [klp @prologArgs krp] = [[]]
+  prologArgs_other [any] = [[]]
 
     keyword [word] = [[${word}]]
     sharp [c] = [[${c}]]
     anythingToEOL [@notNL nl] = [[${notNL}${nl}]]
     nl [c] = [[${c}]]
     notNL [any] = [[${any}]]
-    importid [identifier] = [[?- consult("${support.getArgv("PLPATH")}${identifier}.pl").\n]]
+    importid [identifier] = [[]]
     identifier [firstChar @restChar] = [[${firstChar}${restChar}]]
     firstChar [c] = [[${c}]]
     restChar [c] = [[${c}]]
-    comment [kpercents anythingToEOL] = [[${kpercents}${anythingToEOL}]]
+    comment [kpercents anythingToEOL] = [[]]
     space [c] = [[${c}]]
