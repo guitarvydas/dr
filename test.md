@@ -1,7 +1,7 @@
 # design rule edge containment
 %% use experimental editor https://ohmlang.github.io/editor/?ohm-js=next
 ## parameters
-  Edge SourceContainer TargetContainer
+  Edge
 ## imports
   shapes onSameDiagram inside names ports contains
 ## rule
@@ -14,16 +14,13 @@
 	das_fact(direct_contains,SourceContainer,SourceID)
     das_fact(direct_contains,TargetContainer,TargetID)
     cond
-      ( das_fact(direct_contains,Uber,TargetContainer), das_fact(direct_contains,Uber,SourceContainer) )      
-      ( das_fact(direct_contains,SourceContainer,TargetContainer) )
-      ( das_fact(direct_contains,TargetContainer,SourceContainer) )
+      ( UberSource = UberTarget,        das_fact(direct_contains,UberTarget,TargetContainer),        das_fact(direct_contains,UberSource,SourceContainer) )      
+      ( das_fact(direct_contains,UberTarget,TargetContainer), das_fact(direct_contains,SourceContainer,UberTarget))
+      (	das_fact(direct_contains,UberSource,SourceContainer), das_fact(direct_contains,TargetContainer,UberSource))
     endcond
   endforall
 ## on failure
 Edge Containment edge=${Edge} is not contained by any Component (internal error: inferencing rules did not catch this case)
-Source Container ${SourceContainer}
-Target Container ${TargetContainer}
-
 
 
 

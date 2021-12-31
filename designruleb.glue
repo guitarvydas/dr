@@ -5,7 +5,7 @@ var rawText = fs.readFileSync ('/dev/fd/0');
 var parameters = JSON.parse(rawText);
 parameters.forEach (p => {
 ${support.formatJSParameters ()}
-if (!p.Passed) {
+if (Passed !== "true") {
   console.error ('design rule failure');
 ${OnFailure}
 }

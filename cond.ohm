@@ -3,6 +3,7 @@ designrulecond {
   PrologClause 
     = identifier "(" prologArgs+ ")" -- clauseWithArgs
     | identifier "=" identifier     -- assignment
+    | "(" prologArgs+ ")"           -- parenthesized
     | identifier                    -- clauseWithoutArgs
 
   prologArgs
