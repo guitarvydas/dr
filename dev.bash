@@ -1,3 +1,8 @@
+echo old
+exit 1
+
+# << checked for --exclusive >>
+
 clear
 ~/app/make.bash
 cwd=`pwd`
